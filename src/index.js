@@ -1,17 +1,28 @@
-import React from 'react';
+import React from "react";
+import {LineChart, XAxis, YAxis, Tooltip, Legend, Line, CartesianGrid} from "recharts";
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import data from "./website_Maharashtra_est.json";
+
+
+export default class App extends React.Component {
+  render(){
+    return (
+    	<LineChart width={600} height={300} data={data}
+            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+       <XAxis dataKey="time"/>
+       <YAxis/>
+       <CartesianGrid strokeDasharray="3 3"/>
+       <Tooltip/>
+       <Legend />
+       <Line type="monotone" dataKey="Rt" stroke="#8884d8" activeDot={{r: 8}}/>
+      </LineChart>
+    );
+   }
+}
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <App />,
+  document.getElementById('container')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
